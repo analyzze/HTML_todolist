@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 70%;
+            padding: 8px;
+        }
+        button {
+            padding: 8px;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            background: #f4f4f4;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Lista de Tarefas</h2>
+        <input type="text" id="taskInput" placeholder="Adicionar nova tarefa...">
+        <button onclick="addTask()">Adicionar</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        function addTask() {
+            let taskInput = document.getElementById("taskInput");
+            let taskList = document.getElementById("taskList");
+            
+            if (taskInput.value.trim() === "") return;
+            
+            let li = document.createElement("li");
+            li.innerHTML = `${taskInput.value} <button onclick="removeTask(this)">Remover</button>`;
+            
+            taskList.appendChild(li);
+            taskInput.value = "";
+        }
+        
+        function removeTask(button) {
+            let li = button.parentElement;
+            li.remove();
+        }
+    </script>
+</body>
+</html>
